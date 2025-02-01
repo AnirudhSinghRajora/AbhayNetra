@@ -8,7 +8,7 @@ Original file is located at
 
 ### **Reading Dataset and Performing EDA**
 """
-
+import pickle
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -33,18 +33,23 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.8, random_
 model = LogisticRegression()
 model.fit(x_train, y_train)
 
-"""### **Testing The Model**"""
+print(int(model.predict([[34]])))
 
-y_pred = model.predict(x_test)
+with open('model.pkl', 'wb') as f:
+  pickle.dump(model, f)
 
-for i in range(len(y_pred)):
-    print(y_pred[i], y_test.values[i])
+# """### **Testing The Model**"""
 
-accuracy = accuracy_score(y_test, y_pred)
-print(accuracy)
+# y_pred = model.predict(x_test)
 
-currDensity=[[int(input("Enter Current Traffic Density: "))]]
-if (model.predict(currDensity) == 1):
-  print("Light is Green")
-else:
-  print("Light is Red")
+# for i in range(len(y_pred)):
+#     print(y_pred[i], y_test.values[i])
+
+# accuracy = accuracy_score(y_test, y_pred)
+# print(accuracy)
+
+# currDensity=[[int(input("Enter Current Traffic Density: "))]]
+# if (model.predict(currDensity) == 1):
+#   print("Light is Green")
+# else:
+#   print("Light is Red")
